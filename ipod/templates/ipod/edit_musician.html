@@ -1,0 +1,34 @@
+{% load crispy_forms_tags %}
+<html>
+  <!-- CSS only -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+    crossorigin="anonymous"
+  />
+  <br/>
+  <h2 style="text-align: center">Edit Musician</h2>
+
+  <!--error message-->
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}
+        </li>
+        {% endfor %}
+</ul>
+{% endif %}
+
+  <!--edit musician form-->
+  <div class="container">
+    <form method="POST">
+      {% csrf_token %} {{ form | crispy}}
+      <br />
+      <p style="text-align: center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </p>
+    </form>
+  </div>
+  <!--end edit musician form-->

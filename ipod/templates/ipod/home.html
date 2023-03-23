@@ -1,0 +1,64 @@
+<html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+
+<body>
+  <div class="container">
+    <!--Album table-->
+    <h2 style="text-align: center">Albums</h2>
+    <table class="table table-striped">
+      <tr>
+        <th>Object id</th>
+        <th>Artist Name</th>
+        <th>Album Title</th>
+        <th>Actions</th>
+      </tr>
+      {%for album in albums%}
+      <tr>
+        <td>{{album.id}}</td>
+        <td>{{album.artist.first_name}} {{album.artist.last_name}}</td>
+        <td>{{album.title}}</td>
+        <!--delete button-->
+        <td>
+          <a class='btn btn-primary' href={%url 'albums:delete_album' album.id%}>Delete Button</a>
+          <a class="btn btn-secondary" href = {%url "albums:edit_album" album.id%}>Edit Album</a>
+        </td>
+        <!--end delete button-->
+      </tr>
+      {%endfor%}
+    </table>
+    <!--end album table-->
+
+    <!--Musician Table-->
+    <br/>
+    <h2 style="text-align: center">Artists</h2>
+    <table class="table table-striped">
+      <tr>
+        <th>Object id</th>
+        <th>Artist First Name</th>
+        <th>Artist Last Name</th>
+        <th>Actions</th>
+      </tr>
+      {%for m in musicians%}
+      <tr>
+        <td>{{m.id}}</td>
+        <td>{{m.first_name}}</td>
+        <td>{{m.last_name}}</td>
+        <td><a class='btn btn-primary' href = {%url 'albums:delete_musician' m.id%}>Delete Button </a>
+        <a class="btn btn-secondary" href = {%url 'albums:edit_musician' m.id%} >Edit Musician</a></td>
+
+      </tr>
+      {%endfor%}
+      </table>
+      <!--end musician table-->
+  </div>
+ 
+ 
+  <!---add album/ add-musician redirect to form button-->
+  <div style="text-align:center"><a class="btn btn-secondary" href={%url "albums:add_album" %}>Add Album</a>
+    <a class="btn btn-secondary" href={%url "albums:add_musician" %}>Add Musician</a></div>
+  <!---end add album/musician redirect-->
+  <br/>
+
+</body>
+</html>
